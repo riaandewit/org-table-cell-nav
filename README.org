@@ -2,10 +2,56 @@
 
 Some primitive functions to help move around org table cells programmatically.
 
-| one | two | three | four | five |
-| one | two | three | four | five |
-| one | two | three | four | five |
-| one | two | three | four | five |
-| one | two | three | four | five |
-| one | two | three | four | five |
-| one | two | three | four | five |
+Emacs has a lovely paradigm: a DSL for navigating and manipulating text. Sometimes that text is just paragraphs, lines or lisp code, and sometimes it's org-tables.
+
+Org has some very handy features, enabling you to do amazing things with the data. Go check out http://sachachua.com/blog/2015/01/getting-data-org-mode-tables/ to see what it's all about.
+
+Here's another, half baked way of doing things: Sort of zipping around the table, getting values, and... doing stuff... You could, if you wanted to, just use the functions that are already defined in org to do this stuff, these are totally just convenience wrappers - but good fun.
+
+Let's say we have a table like this:
+
+| A1  | A2  | A3    |
+| B1  | B2  | B3    |
+| C1  | C2  | C3    |
+
+... and you're in cell B2 (right in the middle there).
+
+To go from B2 to B3 (one cell right): ```(org-table-cell-go-right)```
+
+To go from B3 to B1 (two cells left): ```(org-table-cell-go-left 2)```
+
+To go to from B1 to A1 (one cell up): ```(org-table-cell-go-up)```
+
+To go from A1 to C1 (two cells down): ```(org-table-cell-go-down 2)```
+
+Bonus feature: to get the contents of the cell you're on: ```(org-table-cell-value)```
+
+You could use this for all sorts of weird and wonderful hacks that you could totally achieve using Sacha's methods above, but in my special, half baked way.
+
+Imagine: a table with lookup values:
+
+| ALPHAKey | Value |
+|----------+-------|
+| aaa      |     1 |
+| bbb      |     2 |
+| ccc      |     3 |
+| ddd      |     4 |
+|          |       |
+
+
+... to get the value of ddd, code like this would do:
+
+#+begin_src emacs-lisp
+(defun get-ddd ()
+	(goto-char (point-min))
+	(when (search-forward "ALPHAKey" nil t)
+		(when (search-forward "ccc")
+			(progn
+				(org-table-cell-go-right)
+				(org-table-cell-value)))))
+
+#+end_src
+
+That's a very basic example, but it demonstrates Emacs' text-and-structure-in-a-file paradigm.
+
+Just another way to go about doing things !
