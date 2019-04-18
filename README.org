@@ -16,15 +16,15 @@ Let's say we have a table like this:
 
 ... and you're in cell B2 (right in the middle there).
 
-To go from B2 to B3 (one cell right): ```(org-table-cell-go-right)```
+To go from B2 to B3 (one cell right): =(org-table-cell-go-right)=
 
-To go from B3 to B1 (two cells left): ```(org-table-cell-go-left 2)```
+To go from B3 to B1 (two cells left): =(org-table-cell-go-left 2)=
 
-To go to from B1 to A1 (one cell up): ```(org-table-cell-go-up)```
+To go to from B1 to A1 (one cell up): =(org-table-cell-go-up)=
 
-To go from A1 to C1 (two cells down): ```(org-table-cell-go-down 2)```
+To go from A1 to C1 (two cells down): =(org-table-cell-go-down 2)=
 
-Bonus feature: to get the contents of the cell you're on: ```(org-table-cell-value)```
+Bonus feature: to get the contents of the cell you're on: =(org-table-cell-value)=
 
 You could use this for all sorts of weird and wonderful hacks that you could totally achieve using Sacha's methods above, but in my special, half baked way.
 
