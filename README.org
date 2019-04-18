@@ -45,7 +45,7 @@ Imagine: a table with lookup values:
 (defun get-ddd ()
 	(goto-char (point-min))
 	(when (search-forward "ALPHAKey" nil t)
-		(when (search-forward "ccc")
+		(when (search-forward "ddd")
 			(progn
 				(org-table-cell-go-right)
 				(org-table-cell-value)))))
